@@ -1,6 +1,7 @@
 import React from 'react';
 
-function ShortPost() {
+function ShortPost(props) {
+  console.log(props, 'props');
   return (
     <div>
 
