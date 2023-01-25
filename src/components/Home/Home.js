@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Loading from '../Loading/Loading';
 import ShortPost from './ShortPost/ShortPost';
@@ -7,7 +7,7 @@ function Home() {
 
   const [posts, setPosts] = useState(undefined);
 
-  const fetchPosts = () => {
+  const fetchPosts = useCallback(() => {
     fetch(process.env.REACT_APP_URL + '/posts', {
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ function Home() {
       .then(result => {
         setPosts(result);
       })
-  }
+  }, []);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -31,7 +31,7 @@ function Home() {
     return () => {
       abortController.abort();
     }
-  }, [])
+  }, [fetchPosts, posts])
 
   if (!posts) {
     return (
