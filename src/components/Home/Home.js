@@ -1,17 +1,26 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 
 import Loading from '../Loading/Loading';
 import ShortPost from './ShortPost/ShortPost';
+import AuthContext from '../../context/auth-context';
 
 function Home() {
 
   const [posts, setPosts] = useState(undefined);
+  const {
+    authObject
+  } = useContext(AuthContext);
 
   const fetchPosts = useCallback(() => {
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    if (authObject) {
+      headers.Authorization = 'Bearer ' + authObject.token
+    }
     fetch(process.env.REACT_APP_URL + '/posts', {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     })
       .then(response => {
         return response.json();
