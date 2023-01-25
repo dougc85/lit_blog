@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Signin() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   function handleInput(e) {
     let set = e.target.name === 'email' ? setEmail : setPassword;
@@ -32,7 +35,8 @@ function Signin() {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          //Handle token
+          window.localStorage.setItem('lit_blog_jwt', JSON.stringify(result));
+          navigate('/', { replace: true });
         }
       })
       .catch(err => {
