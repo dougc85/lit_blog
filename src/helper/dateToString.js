@@ -21,7 +21,5 @@ export default function dateToString(mongoDate) {
     minutes = '0'.concat(minutes);
   }
 
-  console.log(date, 'date');
-
   return `${month.toUpperCase()} ${day}, ${year} AT ${hour}:${minutes} ${halfDay}`
 }

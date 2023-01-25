@@ -24,7 +24,6 @@ function Post(props) {
         return response.json();
       })
       .then(result => {
-        console.log(result, 'result');
         setComments(result.comments);
         setPost(result);
       })

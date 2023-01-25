@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import AuthContext from '../../../context/auth-context';
 
 function Signin() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const {
+    setAuthObject
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -15,8 +21,6 @@ function Signin() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    console.log('first, here');
 
     fetch(process.env.REACT_APP_URL + '/auth/signin', {
       method: 'POST',
@@ -35,7 +39,9 @@ function Signin() {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          window.localStorage.setItem('lit_blog_jwt', JSON.stringify(result));
+          const authObject = { ...result };
+          authObject.expiresAt = Date.now() + 3600000;
+          setAuthObject(authObject);
           navigate('/', { replace: true });
         }
       })
