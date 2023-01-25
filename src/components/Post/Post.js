@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import './Post.css';
 import { useParams, Navigate } from 'react-router-dom';
+import AuthContext from '../../context/auth-context';
 
 import dateToString from '../../helper/dateToString';
 
 import Comment from './Comment/Comment';
 import Loading from '../Loading/Loading';
+import PostOptions from '../PostOptions/PostOptions';
 
 function Post(props) {
 
@@ -13,6 +15,16 @@ function Post(props) {
   const [comments, setComments] = useState(undefined);
 
   const params = useParams();
+
+  const {
+    authObject
+  } = useContext(AuthContext);
+
+  let showAuthOptions;
+
+  if (authObject && post && (post.creator === authObject.userId)) {
+    showAuthOptions = true;
+  }
 
   const fetchPost = useCallback(() => {
     fetch(process.env.REACT_APP_URL + `/posts/${params.postId}`, {
@@ -56,7 +68,7 @@ function Post(props) {
     published,
   } = post;
 
-  if (!published) {
+  if (!published && !showAuthOptions) {
     return (
       <Navigate replace to="/" />
     )
@@ -65,6 +77,7 @@ function Post(props) {
   return (
     <div className="Post">
       <h2>{title}</h2>
+      {showAuthOptions && <PostOptions post={post} setPost={setPost} />}
       {imageURL ? <img src={imageURL} alt={title} /> : null}
       <p>{dateToString(createdAt)}</p>
       <p>{body}</p>

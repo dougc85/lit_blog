@@ -7,23 +7,6 @@ function Home() {
 
   const [posts, setPosts] = useState(undefined);
 
-  let litBlogJwt = window.localStorage.getItem('lit_blog_jwt');
-  let makeVisible;
-
-
-
-
-  //Or do in context??????
-
-  if (litBlogJwt && (litBlogJwt.userId === process.env.REACT_APP_USER_ID)) {
-    makeVisible = true;
-  }
-
-
-
-
-
-
   const fetchPosts = useCallback(() => {
     fetch(process.env.REACT_APP_URL + '/posts', {
       headers: {
