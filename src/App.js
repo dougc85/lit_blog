@@ -18,7 +18,7 @@ import EditPost from './components/EditPost/EditPost';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Header />} >
           <Route index element={<Home />} />
