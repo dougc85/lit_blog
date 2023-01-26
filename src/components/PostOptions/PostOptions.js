@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './PostOptions.css';
+
+import AuthContext from '../../context/auth-context';
 
 function PostOptions(props) {
 
@@ -18,10 +20,22 @@ function PostOptions(props) {
     _id
   } = post;
 
+  const {
+    authObject
+  } = useContext(AuthContext);
+
   let publishText = post.published ? 'Click to Unpublish' : 'Click to Publish';
 
   function handlePublishing(e) {
     e.preventDefault();
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (authObject) {
+      headers.Authorization = 'Bearer ' + authObject.token
+    }
 
     fetch(process.env.REACT_APP_URL + `/posts/${_id}`, {
       method: 'PATCH',
