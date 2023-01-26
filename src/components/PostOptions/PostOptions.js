@@ -58,12 +58,10 @@ function PostOptions(props) {
           throw new Error(result.message);
         } else {
           setPost((oldPost) => {
-            console.log(oldPost);
             const newPost = { ...oldPost };
             newPost.published = !oldPost.published;
             return newPost;
           })
-          console.log(result, 'result');
         }
       })
       .catch(err => {
@@ -104,7 +102,6 @@ function PostOptions(props) {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          console.log(result, 'result');
           navigate('/');
         }
       })

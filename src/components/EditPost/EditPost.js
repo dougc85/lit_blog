@@ -47,7 +47,7 @@ function EditPost() {
         setImageURL(result.imageURL);
       })
       .catch(err => {
-        console.log(typeof err, 'here');
+        console.log(err);
       })
   }, [params.postId, authObject]);
 

@@ -27,11 +27,6 @@ function AddPost() {
       headers.Authorization = 'Bearer ' + authObject.token
     }
 
-    // const lines = body.replace(/\r\n|\r|\n/, '\\n');
-    // console.log(lines, 'lines');
-    // console.log(lines.length, 'numLines');
-    // const newBody = body.replace(/[\r\n]+/gm, "\\n");
-
     fetch(process.env.REACT_APP_URL + '/posts', {
       method: 'POST',
       body: JSON.stringify({
@@ -48,7 +43,6 @@ function AddPost() {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          console.log(result, 'result');
           navigate('/');
         }
       })

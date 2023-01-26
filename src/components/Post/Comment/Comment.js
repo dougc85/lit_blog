@@ -55,7 +55,6 @@ function Comment(props) {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          console.log(result, 'result');
           setComments((oldComments) => {
             const newComments = oldComments.filter(comment => {
               return (comment._id !== _id);

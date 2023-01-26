@@ -23,7 +23,6 @@ export const AuthContextProvider = (props) => {
   })
 
   useEffect(() => {
-    console.log('use Effect Ran');
     window.localStorage.setItem("lit_blog_jwt", JSON.stringify(authObject));
   }, [authObject]);
 
