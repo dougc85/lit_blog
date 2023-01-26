@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './PostOptions.css';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import AuthContext from '../../context/auth-context';
 
@@ -23,6 +23,7 @@ function PostOptions(props) {
   } = post;
 
   const navigate = useNavigate();
+  const params = useParams();
 
   const {
     authObject
@@ -71,6 +72,8 @@ function PostOptions(props) {
 
   function handleEdit(e) {
     e.preventDefault();
+
+    navigate(`/${params.postId}/${params.postTitle}/edit`);
   }
 
   function handleDelete(e) {

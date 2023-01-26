@@ -14,6 +14,7 @@ import Post from './components/Post/Post';
 import Admin from './components/Admin/Admin';
 import Signin from './components/Admin/Signin/Signin';
 import AddPost from './components/Admin/AddPost/AddPost';
+import EditPost from './components/EditPost/EditPost';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="addpost" element={<AddPost />} />
           </Route>
           <Route path=":postId/:postTitle" element={<Post />} />
+          <Route path=":postId/:postTitle/edit" element={<EditPost />} />
         </Route>
       </Routes>
     </BrowserRouter>
