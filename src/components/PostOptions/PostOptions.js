@@ -42,9 +42,7 @@ function PostOptions(props) {
       body: JSON.stringify({
         published: !published
       }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     })
       .then(response => {
         return response.json();
