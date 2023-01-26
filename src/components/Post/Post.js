@@ -46,7 +46,7 @@ function Post(props) {
         setComments(result.comments);
         setPost(result);
       })
-  }, [params.postId]);
+  }, [params.postId, authObject]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -73,6 +73,8 @@ function Post(props) {
     updatedAt,
     imageURL,
     published,
+    creator,
+    _id
   } = post;
 
   if (!published && !showAuthOptions) {
@@ -91,7 +93,7 @@ function Post(props) {
       {(createdAt !== updatedAt) ?
         <p>UPDATED {dateToString(updatedAt)}</p> : null}
       {comments.map(comment => (
-        <Comment key={comment._id} {...comment} />
+        <Comment key={comment._id} {...comment} postCreator={creator} postId={_id} setComments={setComments} />
       ))}
     </div>
   )
