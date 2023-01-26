@@ -1,0 +1,9 @@
+.AddPost input,
+.AddPost textarea {
+  display: block;
+  width: 400px;
+}
+
+.AddPost label {
+  display: block;
+}

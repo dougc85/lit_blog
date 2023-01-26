@@ -4,3 +4,7 @@
   margin-bottom: 20px;
   padding: 10px;
 }
+
+.ShortPost p {
+  white-space: pre-wrap;
+}
