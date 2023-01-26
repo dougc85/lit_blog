@@ -1,3 +1,23 @@
 .Post p {
   white-space: pre-wrap;
 }
+
+.Post label,
+.Post input,
+.Post textarea,
+.Post button {
+  display: block;
+}
+
+.Post input,
+.Post textarea {
+  width: 300px;
+}
+
+.comment-error {
+  color: red;
+}
+
+.comment-success {
+  color: rgb(4, 177, 4);
+}

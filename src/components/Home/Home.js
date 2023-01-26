@@ -28,7 +28,7 @@ function Home() {
       .then(result => {
         setPosts(result);
       })
-  }, []);
+  }, [authObject]);
 
   useEffect(() => {
     const abortController = new AbortController();

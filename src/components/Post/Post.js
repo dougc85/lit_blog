@@ -14,6 +14,11 @@ function Post(props) {
   const [post, setPost] = useState(undefined);
   const [comments, setComments] = useState(undefined);
 
+  const [commentName, setCommentName] = useState('');
+  const [commentBody, setCommentBody] = useState('');
+  const [responseMessage, setResponseMessage] = useState('');
+  const [responseClass, setResponseClass] = useState('comment-error');
+
   const params = useParams();
 
   const {
@@ -83,6 +88,59 @@ function Post(props) {
     )
   }
 
+  function handleInput(e) {
+
+    setResponseMessage('');
+
+    let set =
+      e.target.name === 'name' ? setCommentName : setCommentBody;
+
+    set(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (authObject) {
+      headers.Authorization = 'Bearer ' + authObject.token
+    }
+
+    fetch(process.env.REACT_APP_URL + `/posts/${params.postId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: commentName,
+        body: commentBody,
+      }),
+      headers
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(result => {
+        if (result.error) {
+          throw new Error(result.message);
+        } else {
+          setComments(oldComments => {
+            const newComments = [...oldComments];
+            newComments.push(result.post);
+            return newComments;
+          })
+          setCommentBody('');
+          setCommentName('');
+          setResponseMessage(result.message);
+          setResponseClass('comment-success');
+        }
+      })
+      .catch(err => {
+        setResponseMessage(err.message);
+        setResponseClass('comment-error')
+      })
+  }
+
   return (
     <div className="Post">
       <h2>{title}</h2>
@@ -92,6 +150,15 @@ function Post(props) {
       <p>{body}</p>
       {(createdAt !== updatedAt) ?
         <p>UPDATED {dateToString(updatedAt)}</p> : null}
+      <form>
+        <h3>Add a Comment</h3>
+        {responseMessage && <p className={responseClass}>{responseMessage}</p>}
+        <label htmlFor="comment-name">Name</label>
+        <input type="text" id="comment-name" name="name" onChange={handleInput} value={commentName} />
+        <label htmlFor="comment-body">Comment</label>
+        <textarea id="comment-body" name="body" onChange={handleInput} value={commentBody} rows="8"></textarea>
+        <button onClick={handleSubmit}>Submit</button>
+      </form>
       {comments.map(comment => (
         <Comment key={comment._id} {...comment} postCreator={creator} postId={_id} setComments={setComments} />
       ))}
