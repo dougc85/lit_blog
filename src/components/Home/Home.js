@@ -47,6 +47,8 @@ function Home() {
       <Loading />
     )
   }
+  console.log(posts, 'posts');
+
   return (
     <div>
       {posts.map(post => (

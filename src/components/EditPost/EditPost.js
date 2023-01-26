@@ -12,11 +12,14 @@ function EditPost() {
   const [post, setPost] = useState(undefined);
 
   const {
-    authObject
+    authObject,
+    checkExpire,
   } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const params = useParams();
+
+
 
   const fetchPost = useCallback(() => {
 
@@ -35,12 +38,16 @@ function EditPost() {
         return response.json();
       })
       .then(result => {
-        console.log(result, 'result');
+        if (result.error) {
+          throw new Error(result.message);
+        }
         setPost(result);
         setTitle(result.title);
         setBody(result.body);
         setImageURL(result.imageURL);
-
+      })
+      .catch(err => {
+        console.log(typeof err, 'here');
       })
   }, [params.postId, authObject]);
 
@@ -60,6 +67,11 @@ function EditPost() {
     return (
       <Loading />
     )
+  }
+
+  if (checkExpire()) {
+    navigate('/admin/signin');
+    return;
   }
 
   function handleSubmit(e) {
@@ -89,7 +101,6 @@ function EditPost() {
         if (result.error) {
           throw new Error(result.message);
         } else {
-          console.log(result, 'result');
           navigate(`/${params.postId}/${params.postTitle}`);
         }
       })

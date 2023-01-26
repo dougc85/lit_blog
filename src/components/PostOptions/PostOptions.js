@@ -13,11 +13,6 @@ function PostOptions(props) {
   } = props;
 
   const {
-    title,
-    body,
-    createdAt,
-    updatedAt,
-    imageURL,
     published,
     _id
   } = post;
@@ -26,13 +21,19 @@ function PostOptions(props) {
   const params = useParams();
 
   const {
-    authObject
+    authObject,
+    checkExpire,
   } = useContext(AuthContext);
 
   let publishText = post.published ? 'Click to Unpublish' : 'Click to Publish';
 
   function handlePublishing(e) {
     e.preventDefault();
+
+    if (checkExpire()) {
+      navigate('/admin/signin');
+      return;
+    }
 
     const headers = {
       'Content-Type': 'application/json',
@@ -78,6 +79,11 @@ function PostOptions(props) {
 
   function handleDelete(e) {
     e.preventDefault();
+
+    if (checkExpire()) {
+      navigate('/admin/signin');
+      return;
+    }
 
     const headers = {
       'Content-Type': 'application/json',

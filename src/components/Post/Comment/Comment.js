@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './Comment.css';
+import { useNavigate } from 'react-router-dom';
 
 import dateToString from '../../../helper/dateToString';
 import AuthContext from '../../../context/auth-context';
@@ -17,8 +18,11 @@ function Comment(props) {
   } = props;
 
   const {
-    authObject
+    authObject,
+    checkExpire
   } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   let showAuthOptions;
 
@@ -27,6 +31,11 @@ function Comment(props) {
   }
 
   function handleDelete() {
+    if (checkExpire()) {
+      navigate('/admin/signin');
+      return;
+    }
+
     const headers = {
       'Content-Type': 'application/json',
     };

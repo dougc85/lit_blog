@@ -27,11 +27,20 @@ export const AuthContextProvider = (props) => {
     window.localStorage.setItem("lit_blog_jwt", JSON.stringify(authObject));
   }, [authObject]);
 
+  function checkExpire() {
+    if (authObject && authObject.expiresAt < Date.now()) {
+      setAuthObject(null);
+      return true;
+    }
+    return false;
+  }
+
   return (
     <AuthContext.Provider
       value={{
         authObject,
         setAuthObject,
+        checkExpire,
       }}>
       {props.children}
     </AuthContext.Provider>
