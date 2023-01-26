@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/dougc85/lit_blog/static/css/main.34777ad2.css",
-    "main.js": "/dougc85/lit_blog/static/js/main.ee100eb4.js",
-    "index.html": "/dougc85/lit_blog/index.html",
-    "main.34777ad2.css.map": "/dougc85/lit_blog/static/css/main.34777ad2.css.map",
-    "main.ee100eb4.js.map": "/dougc85/lit_blog/static/js/main.ee100eb4.js.map"
+    "main.css": "/lit_blog/static/css/main.34777ad2.css",
+    "main.js": "/lit_blog/static/js/main.35d5793d.js",
+    "index.html": "/lit_blog/index.html",
+    "main.34777ad2.css.map": "/lit_blog/static/css/main.34777ad2.css.map",
+    "main.35d5793d.js.map": "/lit_blog/static/js/main.35d5793d.js.map"
   },
   "entrypoints": [
     "static/css/main.34777ad2.css",
-    "static/js/main.ee100eb4.js"
+    "static/js/main.35d5793d.js"
   ]
 }
