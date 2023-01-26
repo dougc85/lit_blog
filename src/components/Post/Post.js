@@ -27,10 +27,17 @@ function Post(props) {
   }
 
   const fetchPost = useCallback(() => {
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (authObject) {
+      headers.Authorization = 'Bearer ' + authObject.token
+    }
+
     fetch(process.env.REACT_APP_URL + `/posts/${params.postId}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     })
       .then(response => {
         return response.json();
