@@ -1,6 +1,5 @@
 {
   "name": "lit_blog",
-  "homepage": "https://dougc85.github.io/lit_blog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
