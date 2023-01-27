@@ -8,3 +8,7 @@
 .ShortPost p {
   white-space: pre-wrap;
 }
+
+.ShortPost img {
+  height: 300px;
+}

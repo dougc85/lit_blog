@@ -21,3 +21,7 @@
 .comment-success {
   color: rgb(4, 177, 4);
 }
+
+.Post img {
+  height: 300px;
+}
