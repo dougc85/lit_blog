@@ -1,7 +1,7 @@
 import './App.css';
 
 import {
-  HashRouter,
+  BrowserRouter,
   Routes,
   Route
 } from 'react-router-dom';
@@ -18,7 +18,7 @@ import EditPost from './components/EditPost/EditPost';
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Header />} >
           <Route index element={<Home />} />
@@ -31,7 +31,7 @@ function App() {
           <Route path=":postId/:postTitle/edit" element={<EditPost />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
