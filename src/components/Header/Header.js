@@ -21,7 +21,7 @@ function Header() {
   return (
     <>
       <header className="Header">
-        <h1><Link to="/">Doug reads books.</Link></h1>
+        <h1 className="display-5 m-3"><Link to="/">Doug reads books.</Link></h1>
         {authObject && authObject.userId === process.env.REACT_APP_USER_ID && (
           <>
             <Link to="/admin/addpost">New Post</Link>

@@ -51,14 +51,19 @@ function Signin() {
   }
 
   return (
-    <div>
-      <form >
-        <label htmlFor="signin-email">email</label>
-        <input id="signin-email" type="email" name="email" value={email} onChange={handleInput} />
-        <label htmlFor="signin-password">password</label>
-        <input id="signin-password" type="password" name="password" value={password} onChange={handleInput} />
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
+    <div class="container">
+      <div className="row">
+        <div className="col-6 offset-3">
+          <form className="mt-4">
+            <label htmlFor="signin-email">email</label>
+            <input className="form-control mb-3" id="signin-email" type="email" name="email" value={email} onChange={handleInput} />
+            <label htmlFor="signin-password">password</label>
+            <input className="form-control mb-4" id="signin-password" type="password" name="password" value={password} onChange={handleInput} />
+            <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+          </form>
+        </div>
+      </div>
+
     </div>
   )
 }
