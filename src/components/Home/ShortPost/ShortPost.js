@@ -33,7 +33,7 @@ function ShortPost(props) {
   }
 
   return (
-    <div className="ShortPost">
+    <div className="ShortPost container">
       {showAuthInfo && (
         published ?
           null :
