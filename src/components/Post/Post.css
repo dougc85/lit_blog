@@ -11,6 +11,6 @@
 }
 
 .Post img {
-  height: 300px;
+  height: min(300px, 40vw);
   float: left;
 }

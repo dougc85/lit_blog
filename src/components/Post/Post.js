@@ -153,7 +153,7 @@ function Post(props) {
           </div>
           <div className="card-body">
             <p>
-              {imageURL ? <img className="me-4 mb-2" src={imageURL} alt={title} /> : null}
+              {imageURL ? <img className="img-fluid me-4 mb-2" src={imageURL} alt={title} /> : null}
               {body}
             </p>
 
