@@ -32,20 +32,22 @@ function ShortPost(props) {
     return;
   }
 
+  const newBody = body.length > 800 ? body.slice(0, 800) + '...' : body;
+
   return (
-    <div className="ShortPost container">
+    <div className="ShortPost container bg-white mb-3 py-3 px-4">
       {showAuthInfo && (
         published ?
           null :
           <p>Unpublished</p>
       )}
-      <h2><Link to={`/${_id}/${title}`}>{title}</Link></h2>
-      <p>
+      <h2><Link className="link-primary" to={`/${_id}/${title}`}>{title}</Link></h2>
+      <p className="">
         {dateToString(createdAt)}
       </p>
-      {imageURL ? <img src={imageURL} alt={title} /> : null}
-      <p>
-        {body}
+      <p className="lead">
+        {imageURL ? <img className="me-4 mb-3" src={imageURL} alt={title} /> : null}
+        {newBody}
       </p>
       <p>
         {comments.length + ' comments'}

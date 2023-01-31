@@ -69,13 +69,11 @@ function Comment(props) {
   }
 
   return (
-    <div className="Comment">
-      <div>
-        <h3>{name}</h3>
-        <p>POSTED ON {dateToString(createdAt)}</p>
-        <p>{body}</p>
-        {showAuthOptions && <button onClick={handleDelete}>Delete Comment</button>}
-      </div>
+    <div className="Comment border border-secondary rounded col-lg-8 offset-lg-2 col-12 offset-0 mb-4 p-3">
+      <h3 className="mb-0">{name}</h3>
+      <small className="text-muted">POSTED ON {dateToString(createdAt)}</small>
+      <p className="mt-3">{body}</p>
+      {showAuthOptions && <button onClick={handleDelete}>Delete Comment</button>}
     </div>
   )
 }

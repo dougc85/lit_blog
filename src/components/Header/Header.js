@@ -20,17 +20,22 @@ function Header() {
 
   return (
     <>
-      <header className="Header">
-        <h1 className="display-5 m-3"><Link to="/">Doug reads books.</Link></h1>
-        {authObject && authObject.userId === process.env.REACT_APP_USER_ID && (
-          <>
-            <Link to="/admin/addpost">New Post</Link>
-            <button onClick={handleSignout}>Sign Out</button>
-          </>
-        )}
-
+      <header className="Header text-start">
+        <div className="filter">
+        </div>
+        <div className="above-filter">
+          <h1 className="display-2 "><Link className="link-dark" to="/"><strong>Doug reads books.</strong></Link></h1>
+          {authObject && authObject.userId === process.env.REACT_APP_USER_ID && (
+            <>
+              <Link to="/admin/addpost">New Post</Link>
+              <button onClick={handleSignout}>Sign Out</button>
+            </>
+          )}
+        </div>
       </header>
-      <Outlet />
+      <body className="py-4">
+        <Outlet />
+      </body>
     </>
   )
 }

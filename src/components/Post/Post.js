@@ -142,26 +142,45 @@ function Post(props) {
   }
 
   return (
-    <div className="Post">
-      <h2>{title}</h2>
-      {showAuthOptions && <PostOptions post={post} setPost={setPost} />}
-      {imageURL ? <img src={imageURL} alt={title} /> : null}
-      <p>{dateToString(createdAt)}</p>
-      <p>{body}</p>
-      {(createdAt !== updatedAt) ?
-        <p>UPDATED {dateToString(updatedAt)}</p> : null}
-      <form>
-        <h3>Add a Comment</h3>
-        {responseMessage && <p className={responseClass}>{responseMessage}</p>}
-        <label htmlFor="comment-name">Name</label>
-        <input type="text" id="comment-name" name="name" onChange={handleInput} value={commentName} />
-        <label htmlFor="comment-body">Comment</label>
-        <textarea id="comment-body" name="body" onChange={handleInput} value={commentBody} rows="8"></textarea>
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
-      {comments.map(comment => (
-        <Comment key={comment._id} {...comment} postCreator={creator} postId={_id} setComments={setComments} />
-      ))}
+    <div className="Post mx-3">
+      <div className="container">
+        <div className="card mb-4">
+          <div className="card-header">
+            <h2>{title}</h2>
+            <p className="mb-0">{dateToString(createdAt)}</p>
+            {showAuthOptions && <PostOptions post={post} setPost={setPost} />}
+            <small className="text-muted">{(createdAt !== updatedAt) ? 'UPDATED ' + dateToString(updatedAt) : null}</small>
+          </div>
+          <div className="card-body">
+            <p>
+              {imageURL ? <img className="me-4 mb-2" src={imageURL} alt={title} /> : null}
+              {body}
+            </p>
+
+          </div>
+        </div>
+        <form className="container p-3 mb-5 col-12 col-md-8">
+          <h3 className="text-center">Add a Comment</h3>
+          {responseMessage && <p className={responseClass}>{responseMessage}</p>}
+          <div className="mb-3">
+            <label htmlFor="comment-name">Name</label>
+            <input className="form-control" type="text" id="comment-name" name="name" onChange={handleInput} value={commentName} />
+          </div>
+          <div className="row">
+            <div className="mb-3">
+              <label htmlFor="comment-body">Comment</label>
+              <textarea className="form-control" id="comment-body" name="body" onChange={handleInput} value={commentBody} rows="8"></textarea>
+            </div>
+          </div>
+          <div className="text-center">
+            <button className="btn btn-primary comment-button" onClick={handleSubmit}>Submit</button>
+          </div>
+
+        </form>
+        {comments.map(comment => (
+          <Comment key={comment._id} {...comment} postCreator={creator} postId={_id} setComments={setComments} />
+        ))}
+      </div>
     </div>
   )
 }

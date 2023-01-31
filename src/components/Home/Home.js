@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
+import './Home.css';
 
 import Loading from '../Loading/Loading';
 import ShortPost from './ShortPost/ShortPost';
@@ -49,10 +50,21 @@ function Home() {
   }
 
   return (
-    <div>
-      {posts.map(post => (
-        <ShortPost key={post._id} {...post} />
-      ))}
+    <div className="Home">
+      <div className="container">
+        <div className="row">
+          <div className="col-0 col-md-3">
+
+          </div>
+          <div className="col-12 col-md-9">
+            {posts.map(post => (
+              <ShortPost key={post._id} {...post} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+
     </div>
   )
 

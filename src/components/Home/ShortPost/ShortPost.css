@@ -10,5 +10,15 @@
 }
 
 .ShortPost img {
-  height: 300px;
+  height: 200px;
+  float: left;
+}
+
+.ShortPost a:link,
+.ShortPost a:visited {
+  text-decoration: none;
+}
+
+.ShortPost a:hover {
+  text-decoration: underline;
 }
